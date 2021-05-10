@@ -1,8 +1,8 @@
 import json
 import http.client
 
-conn = http.client.HTTPSConnection('paas-gstt-voicenoteio-brash-bilby-fm.mybluemix.net')
-headers = {'Content-type': 'application/json'}
+conn = http.client.HTTPSConnection('paas-gstt-voicenoteio-brash-hyena-pj.mybluemix.net')
+headers = {'Content-type': 'application/json', 'Connection':'close'}
 
 def lambda_handler(event, context):
     data = {
@@ -12,7 +12,7 @@ def lambda_handler(event, context):
     
     jsonData = json.dumps(data)
     conn.request('POST', '/transcript', jsonData, headers)
-
+    
     response = conn.getresponse()
     jsonD = json.loads(response.read().decode("utf-8"))
     
